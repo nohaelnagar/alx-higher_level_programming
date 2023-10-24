@@ -9,5 +9,5 @@ class Square:
         """
             size
         """   
-        
+
         self.__size = size
