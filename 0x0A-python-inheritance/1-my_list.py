@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-""" my list """
+'''Module for MyList class.'''
 
 
-class Mylist(list):
-    """ Mylist class that inherist from list """
-
+class MyList(list):
+    '''Custom MyList class.'''
     def print_sorted(self):
-        """ Fucntion that prints a sorted list """
+        '''Method for printing sorted list.'''
         print(sorted(self))
