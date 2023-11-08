@@ -1,28 +1,36 @@
 #!/usr/bin/python3
-"""Module 14-pascal_triangle.
-Returns a list of lists of integers
-representing the Pascal’s triangle of n.
-"""
+"""Module to create a Pascal triangle"""
+
+
+def next_list(list=[]):
+    """Function to generate the next_list"""
+
+    mask1 = list[:]
+    mask2 = list[:]
+
+    del mask1[0]
+    mask2.pop()
+    len_mask = int(len(mask1) / 2) + (len(mask1) % 2)
+    middle_result = [mask1[i] + mask2[i] for i in range(0, len_mask)]
+    reverse_result = middle_result[::-1]
+    if (len(list) % 2 == 0):
+        del reverse_result[0]
+    result = [1] + middle_result + reverse_result + [1]
+    return result
 
 
 def pascal_triangle(n):
-    """Returns the pascal triangle of n.
-    Args:
-        - n: size of the triangle (rows)
-    Returns: a list of list of integers
-    """
+    """Function to create Pascal_triangle"""
 
     if n <= 0:
         return []
-
-    l = [[0 for x in range(i + 1)] for i in range(n)]
-    l[0] = [1]
-
-    for i in range(1, n):
-        l[i][0] = 1
-        for j in range(1, i + 1):
-            if j < len(l[i - 1]):
-                l[i][j] = l[i - 1][j - 1] + l[i - 1][j]
-            else:
-                l[i][j] = l[i - 1][0]
-    return (l)
+    elif n == 1:
+        return [[1]]
+    elif n == 2:
+        return [[1], [1, 1]]
+    lis = []
+    lis.append([1])
+    lis.append([1, 1])
+    for i in range(2, n):
+        lis.append(next_list(lis[i - 1]))
+    return lis
